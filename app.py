@@ -20,7 +20,7 @@ def halfsizes(lower, upper):
     return sizes
 
 SIZE_LABELS = {
-        '1': fullsizes(1, 10),
+        '1': halfsizes(1, 10),
         '2': halfsizes(34, 43),
         '3': fullsizes(30, 48),
         '4': halfsizes(5, 14),
@@ -49,8 +49,8 @@ def index():
             errors.append(e)
         else:
             results["EDV"] = record["EDV"]
-            FB = results["FB"] = record["FB"]
-            SZ = results["SZ"] = record["SZ"]
+            FB = results["FB"] = record["FB"]  # Farbe
+            SZ = results["SZ"] = record["SZ"]  # Sortimentsziffer
             sizes1 = [(size, record[key]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
             sizes2 = [(size, record[key + "1"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
             sizes3 = [(size, record[key + "2"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
