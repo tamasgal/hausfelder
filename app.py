@@ -7,18 +7,6 @@ app = Flask(__name__)
 print("Staring the application")
 
 
-CHARS = "ABCDEFGHIKLMNOPQRSU"
-SIZE_LABELS = {
-        '1': halfsizes(1, 10),
-        '2': halfsizes(34, 43),
-        '3': fullsizes(30, 48),
-        '4': halfsizes(5, 14),
-        '5': halfsizes(39, 47) + ["48", "49"],
-        '6': fullsizes(15, 33),
-        '7': fullsizes(25, 43),
-        '8': halfsizes(3, 12)
-}
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     errors = []
@@ -63,6 +51,20 @@ def halfsizes(lower, upper):
         sizes.append(f"{s}")
         sizes.append(f"-")
     return sizes
+
+
+CHARS = "ABCDEFGHIKLMNOPQRSU"
+SIZE_LABELS = {
+        '1': halfsizes(1, 10),
+        '2': halfsizes(34, 43),
+        '3': fullsizes(30, 48),
+        '4': halfsizes(5, 14),
+        '5': halfsizes(39, 47) + ["48", "49"],
+        '6': fullsizes(15, 33),
+        '7': fullsizes(25, 43),
+        '8': halfsizes(3, 12)
+}
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
