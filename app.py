@@ -25,7 +25,7 @@ def index():
     results = {}
 
     stock = {}
-    for record in DBF('LAG.DBF', 'Latin-1'):
+    for record in DBF('SPORT/LAG.DBF', 'Latin-1'):
         stock[record["EDV"]] = record
 
     if request.method == "POST":
