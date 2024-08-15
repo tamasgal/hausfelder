@@ -41,8 +41,8 @@ def index():
         SZ = results["SZ"] = record["SZ"]  # Sortimentsziffer
         results["size_labels"] = size_labels[SZ]
         results["sizes"] = {
-                "Bestand": [tonum(record[key]) for key in CHARS],
                 "Verkauf": [tonum(record[key + "1"]) for key in CHARS],
+                "Bestand": [tonum(record[key]) for key in CHARS],
                 "Sonstiges": [tonum(record[key + "2"]) for key in CHARS],
         }
 
