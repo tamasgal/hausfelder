@@ -26,10 +26,10 @@ def index():
         edv = request.form['edv'].strip()
         if edv in stock_sport.keys():
             stock = stock_sport
-            size_lables = SIZE_LABELS_SPORT
+            size_labels = SIZE_LABELS_SPORT
         elif edv in stock_schuh.keys():
             stock = stock_schuh
-            size_lables = SIZE_LABELS_SCHUH
+            size_labels = SIZE_LABELS_SCHUH
         else:
             errors.append(f"Artikel nicht gefunden.")
             return render_template('index.html', errors=errors, results=results)
