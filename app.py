@@ -6,17 +6,28 @@ app = Flask(__name__)
 
 print("Staring the application")
 
+def fullsizes(lower, upper):
+    sizes = []
+    for s in range(lower, upper+1):
+        sizes.append(f"{s}")
+    return sizes
+
+def halfsizes(lower, upper):
+    sizes = []
+    for s in range(lower, upper+1):
+        sizes.append(f"{s}")
+        sizes.append(f"-")
+    return sizes
+
 SIZE_LABELS = {
-        '0': range(0, 100),
-        '1': [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
-        '2': range(2, 100),
-        '3': range(3, 100),
-        '4': range(4, 100),
-        '5': range(5, 100),
-        '6': range(6, 100),
-        '7': range(7, 100),
-        '8': range(8, 100),
-        '9': range(9, 100),
+        '1': fullsizes(1, 10),
+        '2': halfsizes(34, 43),
+        '3': fullsizes(30, 48),
+        '4': halfsizes(5, 14),
+        '5': halfsizes(39, 47) + ["48", "49"],
+        '6': fullsizes(15, 33),
+        '7': fullsizes(25, 43),
+        '8': halfsizes(3, 12)
 }
 
 @app.route('/', methods=['GET', 'POST'])
@@ -39,9 +50,10 @@ def index():
         else:
             results["EDV"] = record["EDV"]
             FB = results["FB"] = record["FB"]
-            sizes1 = [(size, record[key]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[FB]) if key not in "JT"]
-            sizes2 = [(size, record[key + "1"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[FB]) if key not in "JT"]
-            sizes3 = [(size, record[key + "2"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[FB]) if key not in "JT"]
+            SZ = results["SZ"] = record["SZ"]
+            sizes1 = [(size, record[key]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
+            sizes2 = [(size, record[key + "1"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
+            sizes3 = [(size, record[key + "2"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
             results["sizes"] = [sizes1]#, sizes2, sizes3]
 #            results["price"] =              ('VKWERT', 464.92)) for key, size in zip(char_range("A", "U"), range(1, 100)) if key not in "JT"]
             results["sizes"] = [sizes1, sizes2, sizes3]
