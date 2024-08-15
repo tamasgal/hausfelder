@@ -31,7 +31,7 @@ def index():
             stock = stock_schuh
             size_labels = SIZE_LABELS_SCHUH
         else:
-            errors.append(f"Artikel nicht gefunden.")
+            errors.append(f"Artikel nicht gefunden ({edv}).")
             return render_template('index.html', errors=errors, results=results)
 
         record = stock[edv]
