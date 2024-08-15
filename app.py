@@ -30,7 +30,7 @@ def index():
 
     if request.method == "POST":
         try:
-            EDV = request.form['edv']
+            EDV = request.form['edv'].strip()
             record = stock[EDV]
         except KeyError:
             errors.append(f"Artikel nicht gefunden.")
@@ -57,4 +57,4 @@ def char_range(c1, c2):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=8080)
