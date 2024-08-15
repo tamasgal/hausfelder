@@ -18,7 +18,7 @@ def index():
         stock_sport[record["EDV"].replace("-", "")] = record
 
     stock_schuh = {}
-    for record in DBF('SCHUH/LAG.DBF', 'Latin-1'):
+    for record in DBF('DATEI/LAG.DBF', 'Latin-1'):
         stock_schuh[record["EDV"]] = record
         stock_schuh[record["EDV"].replace("-", "")] = record
 
