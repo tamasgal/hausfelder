@@ -1,0 +1,20 @@
+table.sizes {
+  margin: 2em;
+}
+table.sizes td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+table.sizes th:nth-child(odd) {
+    background-color: #f2f2f2; /* Light grey for odd TDs */
+}
+table.sizes th:nth-child(even) {
+    background-color: #d9d9d9; /* Slightly darker grey for even TDs */
+}
+td.soldout {
+  background-color: red;
+}
+td.available {
+  background-color: green;
+}
