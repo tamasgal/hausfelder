@@ -6,19 +6,8 @@ app = Flask(__name__)
 
 print("Staring the application")
 
-def fullsizes(lower, upper):
-    sizes = []
-    for s in range(lower, upper+1):
-        sizes.append(f"{s}")
-    return sizes
 
-def halfsizes(lower, upper):
-    sizes = []
-    for s in range(lower, upper+1):
-        sizes.append(f"{s}")
-        sizes.append(f"-")
-    return sizes
-
+CHARS = "ABCDEFGHIKLMNOPQRSU"
 SIZE_LABELS = {
         '1': halfsizes(1, 10),
         '2': halfsizes(34, 43),
@@ -51,9 +40,9 @@ def index():
             results["EDV"] = record["EDV"]
             FB = results["FB"] = record["FB"]  # Farbe
             SZ = results["SZ"] = record["SZ"]  # Sortimentsziffer
-            sizes1 = [(size, record[key]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
-            sizes2 = [(size, record[key + "1"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
-            sizes3 = [(size, record[key + "2"]) for key, size in zip(char_range("A", "U"), SIZE_LABELS[SZ]) if key not in "JT"]
+            sizes1 = [(size, record[key]) for key, size in zip(CHARS, SIZE_LABELS[SZ]) if key not in "JT"]
+            sizes2 = [(size, record[key + "1"]) for key, size in zip(CHARS, SIZE_LABELS[SZ]) if key not in "JT"]
+            sizes3 = [(size, record[key + "2"]) for key, size in zip(CHARS, SIZE_LABELS[SZ]) if key not in "JT"]
             results["sizes"] = [sizes1]#, sizes2, sizes3]
 #            results["price"] =              ('VKWERT', 464.92)) for key, size in zip(char_range("A", "U"), range(1, 100)) if key not in "JT"]
             results["sizes"] = [sizes1, sizes2, sizes3]
@@ -62,11 +51,18 @@ def index():
     return render_template('index.html', errors=errors, results=results)
 
 
-def char_range(c1, c2):
-    """Generates the characters from `c1` to `c2`, inclusive."""
-    for c in range(ord(c1), ord(c2)+1):
-        yield chr(c)
+def fullsizes(lower, upper):
+    sizes = []
+    for s in range(lower, upper+1):
+        sizes.append(f"{s}")
+    return sizes
 
+def halfsizes(lower, upper):
+    sizes = []
+    for s in range(lower, upper+1):
+        sizes.append(f"{s}")
+        sizes.append(f"-")
+    return sizes
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
