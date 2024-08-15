@@ -25,20 +25,22 @@
         <h4>EDV: {{ results["EDV"] }}</h4>
         <h5>FB: {{ results["FB"] }}</h5>
         <h5>SZ: {{ results["SZ"] }}</h5>
-        {% for sizes in results["sizes"] %}
         <table class="sizes">
           <tr class="header">
-            {% for label, _ in sizes %}
+            <th>Gr&ouml;&szlig;en</th>
+            {% for label in results["size_labels"] %}
             <td>{{ label }}</td>
             {% endfor %}
           </tr>
+          {% for category, sizes in results["sizes"].items() %}
           <tr>
-            {% for _, amount in sizes %}
+            <th>{{ category }}</th>
+            {% for amount in sizes %}
             <td class="{% if amount > 0 %}available{% else %}soldout{% endif %}">{{ amount }}</td>
             {% endfor %}
           </tr>
+          {% endfor %}
         </table>
-        {% endfor %}
       {% endif %}
       {% for error in errors %}
         <h4>{{ error }}</h4>
