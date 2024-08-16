@@ -1,5 +1,6 @@
 table.sizes {
   margin: 2em;
+  font-weight: bold;
 }
 table.sizes td {
     border: 1px solid black;
@@ -13,8 +14,8 @@ table.sizes th:nth-child(even) {
     background-color: #d9d9d9; /* Slightly darker grey for even TDs */
 }
 td.soldout {
-  background-color: red;
+  background-color: #e05c53;
 }
 td.available {
-  background-color: green;
+  background-color: #87eb63;
 }
