@@ -16,15 +16,13 @@
       <h1>Bestandsabfrage</h1>
       <form role="form" method='POST' action='/'>
         <div class="form-group">
-          <input type="text" name="edv" class="form-control" id="edv-box" placeholder="Artikelnummer" style="max-width: 300px;" autofocus required>
+          <input type="text" name="edv" pattern="[0-9]*" class="form-control" id="edv-box" placeholder="Artikelnummer" style="max-width: 300px;" autofocus required>
           <button type="submit" class="btn btn-default">OK</button>
         </div>
       </form>
       <br>
       {% if results %}
-        <h4>EDV: {{ results["EDV"] }}</h4>
-        <h5>FB: {{ results["FB"] }}</h5>
-        <h5>SZ: {{ results["SZ"] }}</h5>
+        <h4>EDV: {{ results["EDV"] }} (SZ: {{ results["SZ"] }})</h4>
         <table class="sizes">
           <tr class="header">
             <th>Gr&ouml;&szlig;en</th>
