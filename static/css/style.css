@@ -4,7 +4,7 @@ table.sizes {
 }
 table.sizes td {
     border: 1px solid black;
-    padding: 8px;
+    padding: 3px;
     text-align: center;
 }
 table.sizes th:nth-child(odd) {
